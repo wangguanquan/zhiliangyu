@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ttzero.zly.mapper.TestMapper">
+    <!-- 自动生成, 请勿修改。修改 TEST.xml -->
+
+    <resultMap id="BaseResultMap"  type="cn.ttzero.zly.model.Test">
+        <id column="ID" property="id" jdbcType="INTEGER" javaType="Integer" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" javaType="String" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,`NAME`
+    </sql>
+
+
+    <!-- 插入表:TEST -->
+    <insert id="insert">
+        INSERT INTO TEST(
+            
+            `NAME`
+        ) VALUES (
+            
+            #{name, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 更新表:TEST -->
+    <update id="update">
+        UPDATE TEST
+        SET
+            `NAME`            = #{name, jdbcType=VARCHAR}
+        WHERE
+            ID              = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 根据主键删除数据:TEST -->
+    <delete id="deleteByPrimary">
+        DELETE FROM TEST
+        WHERE
+            ID = #{id, jdbcType=INTEGER}
+    </delete>
+
+    <!-- 根据主键获取数据:TEST -->
+    <select id="getByPrimary" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM TEST
+        WHERE
+            ID = #{id, jdbcType=INTEGER}
+    </select>
+</mapper>
