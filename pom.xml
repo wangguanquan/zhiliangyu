@@ -20,10 +20,10 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <springboot.version>2.1.4.RELEASE</springboot.version>
-        <mysql.version>8.0.13</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <mybatis.version>3.4.2</mybatis.version>
         <dalgen.version>1.12</dalgen.version>
-        <log4j.version>2.11.1</log4j.version>
+        <log4j.version>2.13.3</log4j.version>
         <druid.version>1.1.16</druid.version>
     </properties>
 
