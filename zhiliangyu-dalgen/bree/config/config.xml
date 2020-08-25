@@ -24,10 +24,8 @@
   <!-- datasource config  可以配置多个                              -->
   <!-- ========================================================== -->
 
-  <database name="zly" class="com.mysql.cj.jdbc.Driver" type="mysql">
-    <property name="url" value="jdbc:mysql://localhost/zly?serverTimezone=Asia/Shanghai&#38;useSSL=true"/>
-    <property name="user" value="root"/>
-    <property name="password" value="root"/>
+  <database name="zly" class="org.sqlite.JDBC">
+    <property name="url" value="jdbc:sqlite:../test.db"/>
     <!-- 省略前置 支持多个 -->
     <prefix value=""/>
     <!--分库分表规则  分表后缀 支持多个-->
@@ -125,7 +123,17 @@
 
   <!-- Dao配置-->
   <!-- 最终生成XXXDao.java接口-->
-  <dao ignore="false" />
+  <dao>
+    <namespace value="service" />
+    <suffix value="Service" />
+    <impl>
+      <namespace value="impl" />
+      <suffix value="Impl" />
+      <annotations>
+        <annotation class="Service" import="org.springframework.stereotype.Service"/>
+      </annotations>
+    </impl>
+  </dao>
 
   <!-- 生成service配置-->
   <service ignore="true" />

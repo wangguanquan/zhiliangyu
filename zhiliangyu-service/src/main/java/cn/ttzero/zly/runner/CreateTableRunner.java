@@ -53,7 +53,7 @@ public class CreateTableRunner implements CommandLineRunner {
             logger.info("create table test.");
 
             PreparedStatement statement = con.prepareStatement("CREATE TABLE IF NOT EXISTS test (" +
-                "id integer primary key AUTO_INCREMENT," +
+                "id integer primary key," +
                 "`name` varchar(50))");
             statement.executeUpdate();
         }

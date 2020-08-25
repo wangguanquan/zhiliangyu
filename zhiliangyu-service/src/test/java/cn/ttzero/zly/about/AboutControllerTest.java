@@ -28,6 +28,7 @@ package cn.ttzero.zly.about;
 import cn.ttzero.zly.AbstractTest;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -37,6 +38,7 @@ import static cn.ttzero.zly.Print.println;
 /**
  * Create by guanquan.wang at 2019-04-25 16:31
  */
+@ActiveProfiles("release")
 public class AboutControllerTest extends AbstractTest {
     @Test
     public void testInit() throws Exception {
@@ -65,5 +67,20 @@ public class AboutControllerTest extends AbstractTest {
 
         cn.ttzero.zly.model.Test testDo = super.mapFromJson(content,  cn.ttzero.zly.model.Test.class);
         assertEquals(testDo.getName(), System.getProperty("user.name"));
+    }
+
+    @Test
+    public void testQueryByMap() throws Exception {
+        String uri = "/about/query";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content("{\"orderField\": \"id\", \"orderType\": \"desc\"}")
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+
+        println(content);
     }
 }

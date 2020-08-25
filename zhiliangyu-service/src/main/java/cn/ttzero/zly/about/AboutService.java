@@ -25,10 +25,13 @@
 
 package cn.ttzero.zly.about;
 
-import cn.ttzero.zly.dao.TestDao;
 import cn.ttzero.zly.model.Test;
+import cn.ttzero.zly.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Create by guanquan.wang at 2019-04-25 14:56
@@ -36,9 +39,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AboutService {
     @Autowired
-    private TestDao testDao;
+    private TestService testService;
 
     public Test getById(int id) {
-        return testDao.getByPrimary(id);
+        return testService.getById(id);
+    }
+
+    public List<Test> queryByMap(Map<String, ?> param) {
+        return testService.queryByMap(param);
     }
 }

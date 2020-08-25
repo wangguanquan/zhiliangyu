@@ -1,8 +1,19 @@
 spring:
+  profiles.active: develop
+---
+spring:
+  profiles: develop
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:test.db
+
+---
+spring:
+  profiles: release
+  dataSource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&useSSL=true&characterEncoding=utf-8
     username: root
-    url: jdbc:mysql://localhost:3306/zly?useUnicode=true&characterEncoding=utf-8&useSSL=true&&serverTimezone=Asia/Shanghai
     password: root
 
 ---
@@ -10,3 +21,11 @@ spring:
   mustache:
     charset: utf-8
     cache: false
+
+---
+logging:
+  level:
+    cn:
+      ttzero:
+        zly:
+          mapper: debug

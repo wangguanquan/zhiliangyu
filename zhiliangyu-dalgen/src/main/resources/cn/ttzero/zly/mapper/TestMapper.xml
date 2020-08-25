@@ -28,23 +28,30 @@
     <update id="update">
         UPDATE TEST
         SET
-            `NAME`            = #{name, jdbcType=VARCHAR}
+            `NAME`          = #{name, jdbcType=VARCHAR}
         WHERE
             ID              = #{id, jdbcType=INTEGER}
     </update>
 
     <!-- 根据主键删除数据:TEST -->
-    <delete id="deleteByPrimary">
+    <delete id="deleteById">
         DELETE FROM TEST
         WHERE
             ID = #{id, jdbcType=INTEGER}
     </delete>
 
     <!-- 根据主键获取数据:TEST -->
-    <select id="getByPrimary" resultMap="BaseResultMap">
+    <select id="getById" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM TEST
         WHERE
             ID = #{id, jdbcType=INTEGER}
+    </select>
+
+    <!-- Map testing -->
+    <select id="queryByMap" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM TEST
+        order by #{orderField, jdbcType=VARCHAR} #{orderType, jdbcType=VARCHAR}
     </select>
 </mapper>
