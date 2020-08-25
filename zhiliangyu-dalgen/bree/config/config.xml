@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config SYSTEM "config-1.1.dtd">
 
 <!-- ============================================================== -->
 <!-- Master configuration file for auto-generation of iPaycore dal. -->
@@ -6,36 +7,38 @@
 
 <config>
   <!-- ========================================================== -->
-  <!-- The typemap("Type Map") maps from one java type to another -->
-  <!-- java type. If you feel the original sql data type to java  -->
-  <!-- type mapping is not satisfactory, you can use typemap to   -->
-  <!-- convert it to a more appropriate one.                      -->
-  <!-- ========================================================== -->
-  <type-map from="java.sql.Date" to="java.util.Date"/>
-  <type-map from="java.sql.Time" to="java.util.Date"/>
-  <type-map from="java.sql.Timestamp" to="java.util.Date"/>
-  <type-map from="java.math.BigDecimal" to="Long"/>
-  <type-map from="byte" to="int"/>
-  <type-map from="short" to="int"/>
-  <!-- 此参数会将未知类型转为String-->
-  <type-map from="other" to="String" />
-
-  <!-- ========================================================== -->
   <!-- datasource config  可以配置多个                              -->
   <!-- ========================================================== -->
 
   <database name="zly" class="org.sqlite.JDBC">
     <property name="url" value="jdbc:sqlite:../test.db"/>
+    <property name="user" value=""/>
+    <property name="password" value=""/>
     <!-- 省略前置 支持多个 -->
-    <prefix value=""/>
+    <prefix value="zly"/>
     <!--分库分表规则  分表后缀 支持多个-->
-    <!--<split-suffix value="_000"/>-->
+    <split-suffix value="_000"/>
   </database>
 
   <!-- ========project.name pom.xml中的值========================= -->
-  <package value="cn.ttzero.${database.name}">
-    <subClass name="mapper" value="mapper"/>
-  </package>
+  <package value="cn.ttzero.${database.name}" />
+
+  <!-- ========================================================== -->
+  <!-- The typemap("Type Map") maps from one java type to another -->
+  <!-- java type. If you feel the original sql data type to java  -->
+  <!-- type mapping is not satisfactory, you can use typemap to   -->
+  <!-- convert it to a more appropriate one.                      -->
+  <!-- ========================================================== -->
+  <type-maps>
+    <type-map from="java.sql.Date" to="java.util.Date"/>
+    <type-map from="java.sql.Time" to="java.util.Date"/>
+    <type-map from="java.sql.Timestamp" to="java.util.Date"/>
+    <type-map from="java.math.BigDecimal" to="Long"/>
+    <type-map from="byte" to="int"/>
+    <type-map from="short" to="int"/>
+    <!-- 此参数会将未知类型转为String-->
+    <type-map from="other" to="String" />
+  </type-maps>
 
   <!-- 是不创建默认的insert/update/deleteById/getById 默认true-->
   <!-- 如果项目使用了第三方的插件包含这些基础功能，可以将此配置设为false-->
@@ -57,19 +60,30 @@
     <suffix />
     <!-- 配置Do类的继承 默认无-->
     <!-- java只支持类单继承，此节点只能存在一个-->
-    <extend  />
+    <!-- 如果有多个继承自动将 class转为interface-->
     <!-- 配置Do类的实现 默认无-->
     <implements />
     <!-- 配置Do类的注解 默认无-->
-    <annotations />
+    <annotations>
+      <annotation class="Mapper"
+                  import="org.apache.ibatis.annotations.Mapper" />
+    </annotations>
     <!-- 因为实体有继承，这里配置忽略父类的字段，不然会根本表定义生成全字段 -->
-    <ignores />
+    <ignore>
+      <field name="id"/>
+      <field name="createAt"/>
+      <field name="createBy"/>
+      <field name="createByName"/>
+      <field name="updateAt"/>
+      <field name="updateBy"/>
+      <field name="updateByName"/>
+    </ignore>
   </data-object>
 
   <!-- XMLMapper配置-->
   <!-- mapper xml存放位置 默认与resources/${package} 同级-->
   <!-- 例: resources/cn/ttzero/sdm/mapper-->
-  <!--<xml-mapper output="resources/" />-->
+  <xml-mapper output="resources/cn/ttzero/zly/mapper" />
 
   <!-- DoMapper配置-->
   <!-- 最终生成XXXMapper.java接口-->
@@ -88,7 +102,7 @@
     <!-- xx.classPath -->
     <!-- xx.packageName -->
     <!-- xx.desc 描述-->
-    <extend />
+
     <!-- 配置DoMapper类的实现 默认无-->
     <implements />
     <!-- 配置DoMapper类的注解 默认无-->
@@ -110,7 +124,7 @@
     <useBasePageVo value="true" />
     <!-- 配置vo类的继承 默认无-->
     <!-- 让分页vo继承定义PageVo 此处PageVo放在vo包下，所以省掉import-->
-    <extend  class="PageVo" if ="paging" />
+    <extend class="PageVo" if="paging" />
     <!-- 配置vo类的实现 默认无-->
     <implements />
     <!-- 配置vo类的注解 默认无-->
@@ -123,17 +137,7 @@
 
   <!-- Dao配置-->
   <!-- 最终生成XXXDao.java接口-->
-  <dao>
-    <namespace value="service" />
-    <suffix value="Service" />
-    <impl>
-      <namespace value="impl" />
-      <suffix value="Impl" />
-      <annotations>
-        <annotation class="Service" import="org.springframework.stereotype.Service"/>
-      </annotations>
-    </impl>
-  </dao>
+  <dao ignore="true" />
 
   <!-- 生成service配置-->
   <service ignore="true" />

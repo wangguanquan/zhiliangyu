@@ -9,11 +9,11 @@
 ## mybatis dalgen
 
 mybatis delgen是一个maven插件，将项目中repository放入本地maven仓库中。
-cd 到项目zhiliangyu-dalgen，然后执行mvn mybatis:gen运行此插件
+cd 到项目zhiliangyu-dalgen，然后执行mvn bree-mybatis:gen运行此插件
 
 ```$xslt
 cd zhiliangyu-dalgen
-zhiliangyu-dalgen>mvn mybatis:gen
+zhiliangyu-dalgen>mvn bree-mybatis:gen
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------

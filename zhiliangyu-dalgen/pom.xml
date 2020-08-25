@@ -40,10 +40,10 @@
             <plugin>
                 <groupId>org.ttzero.plugin</groupId>
                 <artifactId>bree-mybatis-maven-plugin</artifactId>
-                <version>0.1.14</version>
+                <version>0.1.15</version>
                 <configuration>
                     <!-- 自动复制模板 第一次需要设置为true,后续如果templates中的模板有修改需求需要设置为false否则会自动覆盖 -->
-                    <copyTemplate>true</copyTemplate>
+                    <copyTemplate>false</copyTemplate>
                 </configuration>
                 <dependencies>
                     <dependency>
