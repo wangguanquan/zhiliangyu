@@ -37,6 +37,23 @@
     <select id="queryByMap" paramType="map" multiplicity="many" remark="Map testing">
         SELECT *
         FROM TEST
-        order by #{orderField, jdbcType=VARCHAR} #{orderType, jdbcType=VARCHAR}
+        <choose>
+            <when test='orderType.equals("desc")'>
+                <if test='orderField.equals("id")'>
+                    order by id desc
+                </if>
+                <if test='orderField.equals("name")'>
+                    order by name desc
+                </if>
+            </when>
+            <otherwise>
+                <if test='orderField.equals("id")'>
+                    order by id
+                </if>
+                <if test='orderField.equals("name")'>
+                    order by name
+                </if>
+            </otherwise>
+        </choose>
     </select>
 </table>

@@ -52,6 +52,23 @@
     <select id="queryByMap" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM TEST
-        order by #{orderField, jdbcType=VARCHAR} #{orderType, jdbcType=VARCHAR}
+        <choose>
+            <when test="orderType.equals(&quot;desc&quot;)">
+                <if test="orderField.equals(&quot;id&quot;)">
+                    order by id desc
+                </if>
+                <if test="orderField.equals(&quot;name&quot;)">
+                    order by name desc
+                </if>
+            </when>
+            <otherwise>
+                <if test="orderField.equals(&quot;id&quot;)">
+                    order by id
+                </if>
+                <if test="orderField.equals(&quot;name&quot;)">
+                    order by name
+                </if>
+            </otherwise>
+        </choose>
     </select>
 </mapper>

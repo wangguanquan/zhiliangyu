@@ -68,16 +68,6 @@
       <annotation class="Mapper"
                   import="org.apache.ibatis.annotations.Mapper" />
     </annotations>
-    <!-- 因为实体有继承，这里配置忽略父类的字段，不然会根本表定义生成全字段 -->
-    <ignore>
-      <field name="id"/>
-      <field name="createAt"/>
-      <field name="createBy"/>
-      <field name="createByName"/>
-      <field name="updateAt"/>
-      <field name="updateBy"/>
-      <field name="updateByName"/>
-    </ignore>
   </data-object>
 
   <!-- XMLMapper配置-->

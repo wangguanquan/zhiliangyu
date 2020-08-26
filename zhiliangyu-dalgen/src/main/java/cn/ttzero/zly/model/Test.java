@@ -12,9 +12,30 @@ import org.apache.ibatis.annotations.Mapper;
 public class Test {
 
     /**
+     * The id .
+     */
+    private Integer id;
+
+    /**
      * The name .
      */
     private String name;
+
+    /**
+     * Setting the id .
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * Returns the id .
+     *
+     * @return the id value
+     */
+    public Integer getId() {
+        return id;
+    }
 
     /**
      * Setting the name .

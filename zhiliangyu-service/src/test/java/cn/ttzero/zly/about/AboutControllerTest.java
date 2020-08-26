@@ -38,7 +38,6 @@ import static cn.ttzero.zly.Print.println;
 /**
  * Create by guanquan.wang at 2019-04-25 16:31
  */
-@ActiveProfiles("release")
 public class AboutControllerTest extends AbstractTest {
     @Test
     public void testInit() throws Exception {
@@ -74,7 +73,7 @@ public class AboutControllerTest extends AbstractTest {
         String uri = "/about/query";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content("{\"orderField\": \"id\", \"orderType\": \"desc\"}")
+                .content("{\"orderField\": \"name\", \"orderType\": \"asc\"}")
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
         int status = mvcResult.getResponse().getStatus();
