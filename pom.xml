@@ -23,7 +23,7 @@
         <mysql.version>8.0.16</mysql.version>
         <mybatis.version>3.4.2</mybatis.version>
         <dalgen.version>1.12</dalgen.version>
-        <log4j.version>2.13.3</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <druid.version>1.1.16</druid.version>
     </properties>
 
