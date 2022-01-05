@@ -21,7 +21,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <springboot.version>2.1.4.RELEASE</springboot.version>
         <mysql.version>8.0.16</mysql.version>
-        <mybatis.version>3.4.2</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <dalgen.version>1.12</dalgen.version>
         <log4j.version>2.17.1</log4j.version>
         <druid.version>1.1.16</druid.version>
